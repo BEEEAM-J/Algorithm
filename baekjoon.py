@@ -1,16 +1,23 @@
-dictionary = {                                          # 딕셔너리 없이 사용하면 시간 초과 생김
-        0: 0,
-        1: 1
-    }
+def func(x):
+    global counter
+    if(len(x) > 1):             # x가 한자리 수가 아닐때
+        counter += 1
+        y = 0
+        for i in x:
+            y += int(i)         # x의 각 자리의 수를 단순히 더한 수 y를 만든다.
+        func(str(y))
 
-def fibo(n):
-    if n in dictionary:         
-        return dictionary[n]
-    else:
-        res = fibo(n - 1) + fibo(n - 2)     
-        dictionary[n] = res                             # 한번 계산했던 값을 딕셔너리에 저장하여 불필요한 계산 횟수 감소
-        return res
-    
-num = int(input())
-print(fibo(num))
+    else:                       # x가 한자리 수이면 3의배수인지 확인한다
+        x = int(x)
+        if(x % 3 == 0):
+            print(counter)
+            print("YES")
+        else:
+            print(counter)
+            print("NO")
+
+counter = 0
+
+num = input()
+func(num)
 
