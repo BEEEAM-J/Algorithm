@@ -1,23 +1,24 @@
-def func(x):
+def func(idx, sum):
     global counter
-    if(len(x) > 1):             # x가 한자리 수가 아닐때
+    counter = 0
+
+    # 종료 조건
+    if idx == n:
+        return 0
+
+    # 부분수열의 합이 s와 같은 경우
+    if s == sum + a[idx]:
         counter += 1
-        y = 0
-        for i in x:
-            y += int(i)         # x의 각 자리의 수를 단순히 더한 수 y를 만든다.
-        func(str(y))
+    
+    counter += func(idx + 1, sum)                       # 해당 숫자를 포함하지 않는 경우( 0 을 넣는 경우 )
+    counter += func(idx + 1, sum + a[idx])              # 해당 숫자를 포함하는 경우
 
-    else:                       # x가 한자리 수이면 3의배수인지 확인한다
-        x = int(x)
-        if(x % 3 == 0):
-            print(counter)
-            print("YES")
-        else:
-            print(counter)
-            print("NO")
+    return counter
 
+
+n, s = map(int, input().split())
+a = list(map(int, input().split()))
 counter = 0
+print(func(0, 0))
 
-num = input()
-func(num)
-
+# DFS, 백트래킹 사용
