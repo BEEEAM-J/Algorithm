@@ -1,24 +1,22 @@
-def func(idx, sum):
-    global counter
-    counter = 0
+def func(g, idx, left, right):
+    
+    value = abs(left - right)
 
-    # 종료 조건
-    if idx == n:
+    if value not in list_pos:
+        list_pos.append(value)
+
+    if idx + 1 == k:
         return 0
 
-    # 부분수열의 합이 s와 같은 경우
-    if s == sum + a[idx]:
-        counter += 1
-    
-    counter += func(idx + 1, sum)                       # 해당 숫자를 포함하지 않는 경우( 0 을 넣는 경우 )
-    counter += func(idx + 1, sum + a[idx])              # 해당 숫자를 포함하는 경우
-
-    return counter
+    if idx != k:
+        func(g, idx + 1, left + g[idx + 1], right)      # 추를 좌측에 놓을 때
+        func(g, idx + 1, left, right + g[idx + 1])      # 추를 우측에 놓을 때
+        func(g, idx + 1, left, right)   
 
 
-n, s = map(int, input().split())
-a = list(map(int, input().split()))
-counter = 0
-print(func(0, 0))
-
-# DFS, 백트래킹 사용
+k = int(input())
+g = list(map(int, input().split()))
+list_pos = [0]
+s = sum(g)
+func(g, -1, 0, 0)
+print((s + 1) - len(list_pos))
