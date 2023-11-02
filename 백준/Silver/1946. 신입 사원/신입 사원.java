@@ -19,10 +19,10 @@ public class Main {
                 people.put(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
             }
 
-            maxInterviewGrade = people.get(1);
+            maxInterviewGrade = 0x7fffffff;
 
             for (int k = 1; k <= N; k++) {
-                if (maxInterviewGrade >= people.get(k)) {
+                if (maxInterviewGrade > people.get(k)) {
                     res += 1;
                     maxInterviewGrade = people.get(k);
                 }
