@@ -18,14 +18,13 @@ public class Main {
                 StringTokenizer st = new StringTokenizer(br.readLine());
                 people.put(Integer.parseInt(st.nextToken()), Integer.parseInt(st.nextToken()));
             }
-            List<Integer> keyList = new ArrayList<>(people.keySet());
-            Collections.sort(keyList);
-            maxInterviewGrade = people.get(keyList.get(0));
 
-            for (int key : keyList) {
-                if (maxInterviewGrade >= people.get(key)) {
+            maxInterviewGrade = people.get(1);
+
+            for (int k = 1; k <= N; k++) {
+                if (maxInterviewGrade >= people.get(k)) {
                     res += 1;
-                    maxInterviewGrade = people.get(key);
+                    maxInterviewGrade = people.get(k);
                 }
             }
             System.out.println(res);
